@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TechEd Platform Design System - Futuristic Dark Theme with Neon Accents */
+
+@layer base {
+  :root {
+    /* Dark theme as default - Futuristic tech colors */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    
+    --card: 225 25% 8%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 225 25% 8%;
+    --popover-foreground: 210 40% 98%;
+    
+    /* Neon blue primary */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 6%;
+    
+    /* Subtle dark secondary */
+    --secondary: 225 15% 15%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 225 15% 12%;
+    --muted-foreground: 215 20% 65%;
+    
+    /* Neon purple accent */
+    --accent: 270 91% 65%;
+    --accent-foreground: 222 47% 6%;
+    
+    /* Neon green for success states */
+    --success: 142 91% 60%;
+    --success-foreground: 222 47% 6%;
+    
+    /* Neon pink for highlights */
+    --highlight: 329 91% 65%;
+    --highlight-foreground: 222 47% 6%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 225 15% 20%;
+    --input: 225 15% 15%;
+    --ring: 217 91% 60%;
+    
+    --radius: 0.75rem;
+    
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(270, 91%, 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(225, 15%, 15%), hsl(225, 15%, 20%));
+    --gradient-hero: linear-gradient(135deg, hsl(222, 47%, 6%) 0%, hsl(225, 25%, 8%) 50%, hsl(217, 91%, 20%) 100%);
+    
+    /* Neon glow effects */
+    --glow-primary: 0 0 20px hsl(217, 91%, 60%, 0.3);
+    --glow-accent: 0 0 20px hsl(270, 91%, 65%, 0.3);
+    --glow-success: 0 0 20px hsl(142, 91%, 60%, 0.3);
+    
+    /* Animation transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .light {
+    /* Light mode overrides - keeping dark as default */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 6%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 6%;
+    --border: 215 20% 90%;
+    --input: 215 20% 90%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/30;
+  }
+}
+
+@layer components {
+  /* Hero text animations */
+  .hero-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+  
+  /* Neon button effects */
+  .btn-neon {
+    @apply relative overflow-hidden transition-all duration-300;
+    box-shadow: var(--glow-primary);
+  }
+  
+  .btn-neon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.5);
+  }
+  
+  .btn-neon::before {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    content: '';
+    background: linear-gradient(45deg, transparent 30%, hsl(var(--primary) / 0.1) 50%, transparent 70%);
+  }
+  
+  .btn-neon:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02];
+    box-shadow: 0 4px 20px hsl(var(--primary) / 0.1);
+  }
+  
+  .card-hover:hover {
+    box-shadow: 0 8px 40px hsl(var(--primary) / 0.2);
+  }
+  
+  /* Code editor styling */
+  .monaco-editor {
+    @apply rounded-lg overflow-hidden;
+  }
+  
+  /* Video player custom styling */
+  .video-player {
+    @apply rounded-lg overflow-hidden;
+    box-shadow: 0 8px 32px hsl(var(--primary) / 0.15);
+  }
+  
+  /* Playlist item animations */
+  .playlist-item {
+    @apply transition-all duration-200 hover:scale-[1.02] hover:bg-card/50;
+    border-left: 2px solid transparent;
+  }
+  
+  .playlist-item.active {
+    border-left-color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.1);
+  }
+  
+  .playlist-item:hover {
+    border-left-color: hsl(var(--accent));
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+  
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  
+  .bg-gradient-secondary {
+    background-image: var(--gradient-secondary);
+  }
+  
+  .bg-gradient-hero {
+    background-image: var(--gradient-hero);
+  }
+}
